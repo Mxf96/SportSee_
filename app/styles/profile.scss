@@ -1,0 +1,172 @@
+.profile-page {
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 45px;
+  color: #151515;
+
+  // =========================
+  // COLONNE GAUCHE
+  // =========================
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  // =========================
+  // STATISTIQUES
+  // =========================
+
+  &__statistics {
+    padding-top: 3px;
+  }
+
+  &__statistics-heading {
+    margin-bottom: 26px;
+
+    h2 {
+      margin: 0 0 3px;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    p {
+      margin: 0;
+      color: #8b8b8b;
+      font-size: 11px;
+    }
+  }
+}
+
+// =====================================
+// IDENTITE
+// =====================================
+
+.profile-identity {
+  min-height: 125px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-sizing: border-box;
+
+  &__picture {
+    width: 82px;
+    height: 82px;
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  &__information {
+    h1 {
+      margin: 0 0 5px;
+      color: #151515;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    p {
+      margin: 0;
+      color: #8b8b8b;
+      font-size: 11px;
+    }
+  }
+}
+
+// =====================================
+// DETAILS DU PROFIL
+// =====================================
+
+.profile-details {
+  min-height: 250px;
+  padding: 30px 24px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-sizing: border-box;
+
+  h2 {
+    margin: 0;
+    color: #151515;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  &__separator {
+    width: 100%;
+    height: 1px;
+    margin: 18px 0 24px;
+    background: #e5e5e5;
+  }
+
+  &__list {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    color: #777777;
+    font-size: 13px;
+
+    dt {
+      margin: 0;
+    }
+
+    dd {
+      margin: 0 0 0 5px;
+    }
+  }
+}
+
+// =====================================
+// GRILLE DES STATISTIQUES
+// =====================================
+
+.profile-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+}
+
+// =====================================
+// CARTE STATISTIQUE
+// =====================================
+
+.profile-stat-card {
+  min-height: 78px;
+  padding: 18px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #1735f5;
+  border-radius: 9px;
+  box-sizing: border-box;
+
+  &__label {
+    margin-bottom: 13px;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 400;
+  }
+
+  &__value {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 500;
+
+    small {
+      font-size: 11px;
+      font-weight: 400;
+    }
+  }
+}
