@@ -26,7 +26,7 @@ export const links: Route.LinksFunction = () => [
   {
     rel: "icon",
     type: "image/png",
-    href: "/Icon logo.png",
+    href: "/Icon/Icon logo.png",
   },
   {
     rel: "preconnect",

@@ -95,3 +95,7 @@ export const mockUserActivity = [
     caloriesBurned: 265,
   },
 ];
+
+export const dashboardConfig = {
+  weeklyRunGoal: 6,
+};

@@ -1,0 +1,31 @@
+.dashboard-stat {
+  flex: 1;
+  max-height: 100px;
+  padding: 24px 32px;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 10px;
+  box-sizing: border-box;
+
+  span {
+    margin-bottom: 16px;
+    color: #888888;
+    font-size: 11px;
+  }
+
+  strong {
+    color: #1735f5;
+    font-size: 20px;
+    font-weight: 500;
+
+    small {
+      font-size: 12px;
+      font-weight: 400;
+    }
+  }
+
+  &__distance {
+    color: #fa4029 !important;
+  }
+}

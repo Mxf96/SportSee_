@@ -2,7 +2,7 @@
   min-height: 100vh;
   display: grid;
   grid-template-columns: 44% 56%;
-  background-color: #f2f3ff;
+  background: #f2f3ff;
 
   &__left {
     position: relative;
@@ -34,7 +34,7 @@
     width: min(400px, calc(100% - 80px));
     padding: 40px;
     box-sizing: border-box;
-    background-color: #ffffff;
+    background: #ffffff;
     border-radius: 20px;
     transform: translate(-50%, -43%);
   }
@@ -77,7 +77,7 @@
       padding: 0 15px;
       box-sizing: border-box;
       color: #111111;
-      background-color: #ffffff;
+      background: #ffffff;
       border: 1px solid #8d8d8d;
       border-radius: 11px;
       font-size: 16px;
@@ -98,7 +98,7 @@
     height: 51px;
     margin-top: 16px;
     color: #ffffff;
-    background-color: #1437ff;
+    background: #1437ff;
     border: none;
     border-radius: 10px;
     font-size: 16px;
@@ -109,7 +109,7 @@
       transform 0.1s ease;
 
     &:hover {
-      background-color: #0d2be0;
+      background: #0d2be0;
     }
 
     &:active {
@@ -144,7 +144,7 @@
 
   &__background {
     min-height: 100vh;
-    background-image: url("/Background picture.png");
+    background-image: url("/img/Background picture.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

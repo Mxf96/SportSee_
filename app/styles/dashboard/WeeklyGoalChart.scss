@@ -1,0 +1,87 @@
+.dashboard-card {
+  &--goal {
+    min-height: 280px;
+    padding: 28px 34px;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border-radius: 10px;
+    box-sizing: border-box;
+
+    p {
+      margin: 6px 0 0;
+      color: #8b8b8b;
+      font-size: 10px;
+    }
+  }
+
+  &__goal-value {
+    color: #1735f5;
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  &__goal-target {
+    margin-left: 5px;
+    color: #aab5ff;
+    font-size: 12px;
+  }
+
+  // =========================
+  // DONUT
+  // =========================
+
+  &__donut {
+    position: relative;
+    width: 100%;
+    height: 210px;
+    margin-top: 18px;
+
+    .recharts-responsive-container {
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  // =========================
+  // LEGENDES
+  // =========================
+
+  &__goal-legend {
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #858585;
+    font-size: 9px;
+    white-space: nowrap;
+    pointer-events: none;
+
+    &--done {
+      left: 10px;
+      bottom: 28px;
+    }
+
+    &--remaining {
+      right: 5px;
+      top: 36px;
+    }
+  }
+
+  &__legend-dot {
+    width: 6px;
+    height: 6px;
+    display: inline-block;
+    flex-shrink: 0;
+    border-radius: 50%;
+
+    &--goal {
+      background: #1735f5;
+    }
+
+    &--remaining {
+      background: #aab5ff;
+    }
+  }
+}

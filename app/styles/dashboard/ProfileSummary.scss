@@ -1,0 +1,76 @@
+.dashboard {
+  &__profile-card {
+    min-height: 150px;
+    padding: 30px 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #ffffff;
+    border-radius: 16px;
+    box-sizing: border-box;
+  }
+
+  &__profile {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+
+  &__profile-picture {
+    width: 82px;
+    height: 82px;
+    object-fit: cover;
+    border-radius: 9px;
+  }
+
+  &__profile-info {
+    h1 {
+      margin: 0 0 4px;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    p {
+      margin: 0;
+      color: #8b8b8b;
+      font-size: 11px;
+    }
+  }
+
+  &__distance {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &__distance-label {
+    color: #909090;
+    font-size: 11px;
+  }
+
+  &__distance-value {
+    min-width: 145px;
+    height: 70px;
+    padding: 0 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    color: #ffffff;
+    background: #1735f5;
+    border-radius: 8px;
+    box-sizing: border-box;
+
+    strong {
+      font-size: 17px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+  }
+
+  &__distance-icon {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+  }
+}

@@ -1,0 +1,60 @@
+.dashboard {
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
+  color: #151515;
+
+  // =========================
+  // SECTIONS
+  // =========================
+
+  &__section {
+    margin-top: 72px;
+  }
+
+  &__section-title {
+    margin: 0 0 24px;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  // =========================
+  // PERFORMANCES
+  // =========================
+
+  &__performance-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 20px;
+  }
+
+  // =========================
+  // SEMAINE
+  // =========================
+
+  &__week-heading {
+    margin-bottom: 25px;
+
+    h2 {
+      margin-bottom: 5px;
+    }
+
+    p {
+      margin: 0;
+      color: #6e6e6e;
+      font-size: 12px;
+    }
+  }
+
+  &__week-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 25px;
+  }
+
+  &__week-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+}
