@@ -1,0 +1,240 @@
+.header {
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 32px 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    text-decoration: none;
+  }
+
+  &__logo-text {
+    color: #1437ff;
+    font-size: 21px;
+    font-weight: 700;
+  }
+
+  &__logo-icon {
+    position: relative;
+
+    width: 29px;
+    height: 31px;
+
+    flex-shrink: 0;
+
+    span {
+      position: absolute;
+      bottom: var(--bottom);
+
+      width: 5px;
+      height: var(--height-min);
+
+      overflow: hidden;
+
+      border-radius: 999px;
+
+      background: linear-gradient(
+        to bottom,
+        #ff9886 0%,
+        #ef6254 45%,
+        #e13d34 100%
+      );
+
+      animation: sportsee-bar 3.25s infinite;
+      will-change: height;
+
+      // Bleu qui remonte depuis le bas
+      &::after {
+        content: "";
+
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        height: 0;
+
+        background: linear-gradient(
+          to bottom,
+          rgba(219, 71, 82, 0) 0%,
+          #8a5bc8 40%,
+          #4d58e8 100%
+        );
+
+        animation: sportsee-blue 3.25s infinite;
+        will-change: height;
+      }
+    }
+
+    // 1re barre
+    span:nth-child(1) {
+      left: 0;
+
+      --bottom: 3px;
+
+      --height-min: 16px;
+      --height-max: 23px;
+
+      --blue-max: 7px;
+    }
+
+    // 2e barre
+    span:nth-child(2) {
+      left: 6px;
+
+      --bottom: 0px;
+
+      --height-min: 20px;
+      --height-max: 30px;
+
+      --blue-max: 11px;
+    }
+
+    // 3e barre
+    span:nth-child(3) {
+      left: 12px;
+
+      --bottom: 6px;
+
+      --height-min: 17px;
+      --height-max: 21px;
+
+      --blue-max: 4px;
+    }
+
+    // 4e barre
+    span:nth-child(4) {
+      left: 18px;
+
+      --bottom: 1px;
+
+      --height-min: 13px;
+      --height-max: 22px;
+
+      --blue-max: 8px;
+    }
+
+    // 5e barre
+    span:nth-child(5) {
+      left: 24px;
+
+      --bottom: 5px;
+
+      --height-min: 20px;
+      --height-max: 25px;
+
+      --blue-max: 5px;
+    }
+  }
+
+  &__nav {
+    min-width: 330px;
+    height: 42px;
+
+    padding: 0 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 26px;
+
+    background-color: #ffffff;
+    border-radius: 30px;
+
+    box-sizing: border-box;
+  }
+
+  &__link,
+  &__logout {
+    color: #202020;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 400;
+
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  &__link {
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #1437ff;
+    }
+  }
+
+  &__separator {
+    width: 1px;
+    height: 17px;
+
+    background-color: #d4d4d4;
+  }
+
+  &__logout {
+    padding: 0;
+
+    color: #1437ff;
+    background: none;
+    border: none;
+
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+@keyframes sportsee-bar {
+  0%,
+  22% {
+    height: var(--height-min);
+    animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  42% {
+    height: var(--height-max);
+    animation-timing-function: linear;
+  }
+
+  61% {
+    height: var(--height-max);
+    animation-timing-function: cubic-bezier(0.4, 0, 0.4, 1);
+  }
+
+  100% {
+    height: var(--height-min);
+  }
+}
+
+@keyframes sportsee-blue {
+  0%,
+  22% {
+    height: 0;
+    animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  42% {
+    height: var(--blue-max);
+    animation-timing-function: linear;
+  }
+
+  61% {
+    height: var(--blue-max);
+    animation-timing-function: cubic-bezier(0.4, 0, 0.4, 1);
+  }
+
+  100% {
+    height: 0;
+  }
+}
