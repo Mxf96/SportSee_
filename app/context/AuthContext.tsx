@@ -1,5 +1,6 @@
 import {
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useState,
@@ -37,15 +38,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
     setIsAuthReady(true);
   }, []);
 
-  function authenticate(newToken: string) {
+  const authenticate = useCallback((newToken: string) => {
     setAuthToken(newToken);
     setToken(newToken);
-  }
+  }, []);
 
-  function logout() {
+  const logout = useCallback(() => {
     removeAuthToken();
     setToken(null);
-  }
+  }, []);
 
   const value: AuthContextValue = {
     token,
@@ -55,20 +56,14 @@ export function AuthProvider({ children }: AuthProviderProps) {
     logout,
   };
 
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
 export function useAuth() {
   const context = useContext(AuthContext);
 
   if (!context) {
-    throw new Error(
-      "useAuth doit être utilisé dans AuthProvider"
-    );
+    throw new Error("useAuth doit être utilisé dans AuthProvider");
   }
 
   return context;

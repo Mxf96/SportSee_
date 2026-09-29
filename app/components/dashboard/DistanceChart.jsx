@@ -10,7 +10,15 @@ import {
 
 import "../../styles/dashboard/DistanceChart.scss";
 
-export default function DistanceChart({ data, average, periodLabel }) {
+export default function DistanceChart({
+  data,
+  average,
+  periodLabel,
+  onPrevious,
+  onNext,
+  disablePrevious = false,
+  disableNext = false,
+}) {
   return (
     <article className="dashboard-card">
       <div className="dashboard-card__header">
@@ -23,13 +31,23 @@ export default function DistanceChart({ data, average, periodLabel }) {
         </div>
 
         <div className="dashboard-card__period">
-          <button type="button" aria-label="Afficher la période précédente">
+          <button
+            type="button"
+            onClick={onPrevious}
+            disabled={disablePrevious}
+            aria-label="Afficher la période précédente"
+          >
             ‹
           </button>
 
           <span>{periodLabel}</span>
 
-          <button type="button" aria-label="Afficher la période suivante">
+          <button
+            type="button"
+            onClick={onNext}
+            disabled={disableNext}
+            aria-label="Afficher la période suivante"
+          >
             ›
           </button>
         </div>

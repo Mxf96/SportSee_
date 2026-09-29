@@ -1,21 +1,57 @@
-const API_URL = "http://localhost:8000";
+import { API_URL, useMockData } from "../config/environment";
+
+import { mockAuthUser } from "../data/mockData";
+
+import { ApiError } from "./ApiError";
 
 export async function loginUser(username, password) {
-  const response = await fetch(`${API_URL}/api/login`, {
-    method: "POST",
+  // =========================
+  // MODE MOCK
+  // =========================
 
-    headers: {
-      "Content-Type": "application/json",
-    },
+  if (useMockData()) {
+    if (
+      username !== mockAuthUser.username ||
+      password !== mockAuthUser.password
+    ) {
+      throw new ApiError("Identifiants incorrects.", 401);
+    }
 
-    body: JSON.stringify({
-      username,
-      password,
-    }),
-  });
+    return {
+      token: mockAuthUser.token,
+      userId: mockAuthUser.userId,
+    };
+  }
+
+  // =========================
+  // MODE API
+  // =========================
+
+  let response;
+
+  try {
+    response = await fetch(`${API_URL}/api/login`, {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify({
+        username,
+        password,
+      }),
+    });
+  } catch {
+    throw new ApiError("Impossible de contacter le serveur.", 0);
+  }
 
   if (!response.ok) {
-    throw new Error("Identifiants incorrects");
+    if (response.status === 401) {
+      throw new ApiError("Identifiants incorrects.", 401);
+    }
+
+    throw new ApiError("Impossible de se connecter.", response.status);
   }
 
   return response.json();

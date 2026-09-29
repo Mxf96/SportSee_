@@ -1,4 +1,5 @@
-import { mockUserInfo, mockUserActivity } from "../data/mockData";
+import { useUserInfo } from "../hooks/useUserInfo";
+import { useUserActivity } from "../hooks/useUserActivity";
 
 import {
   formatDuration,
@@ -18,8 +19,88 @@ export function meta() {
   ];
 }
 
+function getTodayISO() {
+  const now = new Date();
+
+  const year = now.getFullYear();
+
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+
+  const day = String(now.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
+
 export default function Profile() {
-  const { profile, statistics } = mockUserInfo;
+  // =========================
+  // INFORMATIONS UTILISATEUR
+  // =========================
+
+  const {
+    userInfo,
+    isLoading: isUserLoading,
+    error: userError,
+  } = useUserInfo();
+
+  // =========================
+  // PERIODE DES ACTIVITES
+  // =========================
+
+  const activityStartDate = userInfo?.profile?.createdAt ?? null;
+
+  const activityEndDate = activityStartDate ? getTodayISO() : null;
+
+  // =========================
+  // ACTIVITES
+  // =========================
+
+  const {
+    activities,
+    isLoading: isActivityLoading,
+    error: activityError,
+  } = useUserActivity(activityStartDate, activityEndDate);
+
+  // =========================
+  // CHARGEMENT
+  // =========================
+
+  const isLoading = isUserLoading || isActivityLoading;
+
+  if (isLoading) {
+    return (
+      <div className="profile-page">
+        <p>Chargement du profil...</p>
+      </div>
+    );
+  }
+
+  // =========================
+  // ERREURS
+  // =========================
+
+  const error = userError || activityError;
+
+  if (error) {
+    return (
+      <div className="profile-page">
+        <p>Erreur : {error}</p>
+      </div>
+    );
+  }
+
+  // =========================
+  // SECURITE
+  // =========================
+
+  if (!userInfo) {
+    return (
+      <div className="profile-page">
+        <p>Aucune donnée utilisateur disponible.</p>
+      </div>
+    );
+  }
+
+  const { profile, statistics } = userInfo;
 
   // =========================
   // DATE D'INSCRIPTION
@@ -49,16 +130,16 @@ export default function Profile() {
   // CALORIES
   // =========================
 
-  const totalCalories = getTotalCalories(mockUserActivity);
+  const totalCalories = getTotalCalories(activities);
 
   // =========================
   // JOURS DE REPOS
   // =========================
 
-  const lastActivityDate = getLastActivityDate(mockUserActivity);
+  const lastActivityDate = getLastActivityDate(activities);
 
   const restDays = lastActivityDate
-    ? getRestDays(mockUserActivity, profile.createdAt, lastActivityDate)
+    ? getRestDays(activities, profile.createdAt, lastActivityDate)
     : 0;
 
   return (
@@ -68,8 +149,6 @@ export default function Profile() {
       {/* ========================= */}
 
       <section className="profile-page__left">
-        {/* IDENTITE */}
-
         <article className="profile-identity">
           <img
             className="profile-identity__picture"
@@ -85,8 +164,6 @@ export default function Profile() {
             <p>Membre depuis le {memberSince}</p>
           </div>
         </article>
-
-        {/* PROFIL */}
 
         <article className="profile-details">
           <h2>Votre profil</h2>
@@ -127,8 +204,6 @@ export default function Profile() {
         </div>
 
         <div className="profile-stats">
-          {/* TEMPS TOTAL */}
-
           <article className="profile-stat-card">
             <span className="profile-stat-card__label">Temps total couru</span>
 
@@ -136,8 +211,6 @@ export default function Profile() {
               {duration.hours}h<small> {duration.minutes}min</small>
             </strong>
           </article>
-
-          {/* CALORIES */}
 
           <article className="profile-stat-card">
             <span className="profile-stat-card__label">Calories brûlées</span>
@@ -148,8 +221,6 @@ export default function Profile() {
               <small> cal</small>
             </strong>
           </article>
-
-          {/* DISTANCE */}
 
           <article className="profile-stat-card">
             <span className="profile-stat-card__label">
@@ -163,8 +234,6 @@ export default function Profile() {
             </strong>
           </article>
 
-          {/* REPOS */}
-
           <article className="profile-stat-card">
             <span className="profile-stat-card__label">
               Nombre de jours de repos
@@ -176,8 +245,6 @@ export default function Profile() {
               <small> {restDays > 1 ? "jours" : "jour"}</small>
             </strong>
           </article>
-
-          {/* SESSIONS */}
 
           <article className="profile-stat-card">
             <span className="profile-stat-card__label">Nombre de sessions</span>

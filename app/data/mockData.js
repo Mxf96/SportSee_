@@ -1,3 +1,10 @@
+export const mockAuthUser = {
+  username: "sophiemartin",
+  password: "password123",
+  token: "sportsee-mock-token",
+  userId: "mock-sophie",
+};
+
 export const mockUserInfo = {
   profile: {
     firstName: "Sophie",
@@ -6,7 +13,7 @@ export const mockUserInfo = {
     age: 32,
     weight: 60,
     height: 165,
-    profilePicture: "http://localhost:8000/images/sophie.jpg",
+    profilePicture: "./app/data/sophie.jpg",
   },
 
   statistics: {
@@ -34,7 +41,7 @@ export const mockUserActivity = [
     duration: 20,
     heartRate: {
       min: 148,
-      max: 184,
+      max: 200,
       average: 171,
     },
     caloriesBurned: 248,
@@ -95,7 +102,3 @@ export const mockUserActivity = [
     caloriesBurned: 265,
   },
 ];
-
-export const dashboardConfig = {
-  weeklyRunGoal: 6,
-};
