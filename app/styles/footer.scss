@@ -70,3 +70,17 @@
     }
   }
 }
+
+@media (max-width: 1100px) {
+  .footer {
+    &__content {
+      padding: 0 24px;
+    }
+
+    &__copyright,
+    &__links {
+      gap: 9px;
+      font-size: 9px;
+    }
+  }
+}

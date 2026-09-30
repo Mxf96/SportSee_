@@ -29,3 +29,23 @@
     color: #fa4029 !important;
   }
 }
+
+@media (max-width: 1100px) {
+  .dashboard-stat {
+    max-height: 95px;
+    padding: 20px 24px;
+
+    span {
+      margin-bottom: 12px;
+      font-size: 10px;
+    }
+
+    strong {
+      font-size: 18px;
+
+      small {
+        font-size: 11px;
+      }
+    }
+  }
+}

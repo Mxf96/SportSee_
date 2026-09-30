@@ -127,3 +127,46 @@
 .recharts-tooltip-wrapper {
   font-size: 11px;
 }
+
+@media (max-width: 1100px) {
+  .dashboard-card {
+    &--heart {
+      padding: 22px;
+    }
+
+    &__header {
+      min-height: 42px;
+      gap: 10px;
+    }
+
+    &__heading {
+      p {
+        margin-top: 6px;
+        font-size: 9px;
+      }
+    }
+
+    &__main-value {
+      font-size: 15px;
+    }
+
+    &__period {
+      gap: 5px;
+
+      span {
+        font-size: 8px;
+      }
+
+      button {
+        width: 18px;
+        height: 18px;
+        font-size: 13px;
+      }
+    }
+
+    &__chart {
+      height: 220px;
+      margin-top: 20px;
+    }
+  }
+}
