@@ -6,6 +6,11 @@ import {
   getHeartRateData,
   getAverageHeartRate,
   getCurrentWeekStats,
+  getActivityPeriod,
+  getCurrentWeekPeriod,
+  getTodayDate,
+  formatPeriodLabel,
+  formatFullPeriodLabel,
 } from "../utils/dashboardData";
 
 import { useUserInfo } from "../hooks/useUserInfo";
@@ -18,13 +23,6 @@ import WeeklyGoalChart from "../components/dashboard/WeeklyGoalChart";
 import StatCard from "../components/dashboard/StatCard";
 
 import "../styles/dashboard/dashboard.scss";
-
-// =========================
-// PERIODE DES ACTIVITES
-// =========================
-
-const ACTIVITY_START_DATE = "2025-01-01";
-const ACTIVITY_END_DATE = "2025-01-31";
 
 export function meta() {
   return [
@@ -46,6 +44,14 @@ export default function Dashboard() {
   } = useUserInfo();
 
   // =========================
+  // PERIODE DE RECHERCHE API
+  // =========================
+
+  const activityStartDate = userInfo?.profile?.createdAt || null;
+
+  const activityEndDate = getTodayDate();
+
+  // =========================
   // ACTIVITES UTILISATEUR
   // =========================
 
@@ -53,7 +59,7 @@ export default function Dashboard() {
     activities,
     isLoading: isActivityLoading,
     error: activityError,
-  } = useUserActivity(ACTIVITY_START_DATE, ACTIVITY_END_DATE);
+  } = useUserActivity(activityStartDate, activityEndDate);
 
   // =========================
   // CHARGEMENT
@@ -102,7 +108,7 @@ export default function Dashboard() {
   if (!activities || activities.length === 0) {
     return (
       <div className="dashboard">
-        <p>Aucune activité disponible pour cette période.</p>
+        <p>Aucune activité disponible.</p>
       </div>
     );
   }
@@ -112,6 +118,14 @@ export default function Dashboard() {
   // =========================
 
   const { profile, statistics } = userInfo;
+
+  // =========================
+  // PERIODES REELLES
+  // =========================
+
+  const activityPeriod = getActivityPeriod(activities);
+
+  const currentWeekPeriod = getCurrentWeekPeriod(activities);
 
   // =========================
   // DISTANCE
@@ -136,6 +150,20 @@ export default function Dashboard() {
   const weekStats = getCurrentWeekStats(activities);
 
   const weeklyGoal = dashboardConfig.weeklyRunGoal;
+
+  // =========================
+  // LIBELLES DE PERIODE
+  // =========================
+
+  const activityPeriodLabel = formatPeriodLabel(
+    activityPeriod.startDate,
+    activityPeriod.endDate,
+  );
+
+  const currentWeekLabel = formatFullPeriodLabel(
+    currentWeekPeriod.startDate,
+    currentWeekPeriod.endDate,
+  );
 
   // =========================
   // AFFICHAGE
@@ -163,13 +191,13 @@ export default function Dashboard() {
           <DistanceChart
             data={weeklyDistance}
             average={averageWeeklyDistance}
-            periodLabel="01 jan - 31 jan"
+            periodLabel={activityPeriodLabel}
           />
 
           <HeartRateChart
             data={heartRateData}
             average={averageHeartRate}
-            periodLabel="04 jan - 26 jan"
+            periodLabel={activityPeriodLabel}
           />
         </div>
       </section>
@@ -182,7 +210,7 @@ export default function Dashboard() {
         <div className="dashboard__week-heading">
           <h2 className="dashboard__section-title">Cette semaine</h2>
 
-          <p>Du 22/01/2025 au 28/01/2025</p>
+          <p>{currentWeekLabel}</p>
         </div>
 
         <div className="dashboard__week-grid">

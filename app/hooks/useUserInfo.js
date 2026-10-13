@@ -31,7 +31,7 @@ export function useUserInfo() {
           return;
         }
 
-        if (error.status === 401) {
+        if (error.status === 401 || error.status === 403) {
           logout();
 
           return;
