@@ -4,9 +4,18 @@
     background: #ffffff;
     border-radius: 10px;
     box-sizing: border-box;
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
 
     .dashboard-card__main-value {
-      color: #fa4029;
+      color: #f4320b;
+    }
+
+    .recharts-line-curve {
+      transition: stroke 0.3s ease;
     }
   }
 
@@ -101,20 +110,20 @@
     border-radius: 50%;
 
     &--min {
-      background: #ffb1a6;
+      background: #fcc1b6;
     }
 
     &--max {
-      background: #ff3b1f;
+      background: #f4320b;
     }
 
     &--average {
-      background: #1735f5;
+      background: #0b23f4;
     }
   }
 }
 
-.recharts-cartesian-axis-tick-value {
+Comportement .recharts-cartesian-axis-tick-value {
   fill: #858585;
 
   font-size: 9px;
@@ -126,6 +135,23 @@
 
 .recharts-tooltip-wrapper {
   font-size: 11px;
+}
+
+.recharts-line-curve {
+  stroke: #eef0ff;
+  transition: stroke 0.3s ease;
+}
+
+&:hover {
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+
+  .recharts-line-curve {
+    stroke: #0b23f4;
+  }
+}
+
+.dashboard-card__main-value {
+  color: #fa4029;
 }
 
 @media (max-width: 1100px) {

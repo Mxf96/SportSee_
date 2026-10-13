@@ -26,11 +26,11 @@ export default function Header() {
       </Link>
 
       <nav className="header__nav">
-        <Link to="/dashboard" className="header__link">
+        <Link to="/dashboard" className="header__link" viewTransition>
           Dashboard
         </Link>
 
-        <Link to="/profile" className="header__link">
+        <Link to="/profile" className="header__link" viewTransition>
           Mon profil
         </Link>
 

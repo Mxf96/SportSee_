@@ -1,10 +1,11 @@
+import { useState } from "react";
+
 import {
   Bar,
   CartesianGrid,
   ComposedChart,
   Line,
   ResponsiveContainer,
-  Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
@@ -12,8 +13,14 @@ import {
 import "../../styles/dashboard/HeartRateChart.scss";
 
 export default function HeartRateChart({ data, average, periodLabel }) {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    <article className="dashboard-card dashboard-card--heart">
+    <article
+      className="dashboard-card dashboard-card--heart"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div className="dashboard-card__header">
         <div className="dashboard-card__heading">
           <strong className="dashboard-card__main-value">{average} BPM</strong>
@@ -56,18 +63,16 @@ export default function HeartRateChart({ data, average, periodLabel }) {
               width={35}
             />
 
-            <Tooltip />
-
             <Bar
               dataKey="min"
-              fill="#ffb1a6"
+              fill="#fcc1b6"
               radius={[8, 8, 8, 8]}
               barSize={9}
             />
 
             <Bar
               dataKey="max"
-              fill="#ff3b1f"
+              fill="#f4320b"
               radius={[8, 8, 8, 8]}
               barSize={9}
             />
@@ -75,11 +80,11 @@ export default function HeartRateChart({ data, average, periodLabel }) {
             <Line
               type="monotone"
               dataKey="average"
-              stroke="#1735f5"
+              stroke={isHovered ? "#0b23f4" : "#eff0ff"}
               strokeWidth={2}
               dot={{
                 r: 3,
-                fill: "#1735f5",
+                fill: "#0b23f4",
                 strokeWidth: 0,
               }}
             />
@@ -95,7 +100,7 @@ export default function HeartRateChart({ data, average, periodLabel }) {
         <span>Max BPM</span>
 
         <span className="dashboard-card__legend-dot dashboard-card__legend-dot--average" />
-        <span>Moyenne</span>
+        <span>Max BPM</span>
       </div>
     </article>
   );

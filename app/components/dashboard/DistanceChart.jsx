@@ -20,7 +20,7 @@ export default function DistanceChart({
   disableNext = false,
 }) {
   return (
-    <article className="dashboard-card">
+    <article className="dashboard-card dashboard-card--distance">
       <div className="dashboard-card__header">
         <div className="dashboard-card__heading">
           <strong className="dashboard-card__main-value">
@@ -70,7 +70,26 @@ export default function DistanceChart({
 
             <YAxis axisLine={false} tickLine={false} width={30} />
 
-            <Tooltip />
+            <Tooltip
+              cursor={false}
+              contentStyle={{
+                backgroundColor: "#111111",
+                border: "none",
+                borderRadius: "10px",
+                padding: "12px 14px",
+                color: "#ffffff",
+              }}
+              labelStyle={{
+                color: "#ffffff",
+                fontSize: "11px",
+              }}
+              itemStyle={{
+                color: "#ffffff",
+                fontSize: "15px",
+                fontWeight: "500",
+              }}
+              formatter={(value) => [`${value} km`, "Distance"]}
+            />
 
             <Bar
               dataKey="distance"
